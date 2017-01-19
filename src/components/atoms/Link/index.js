@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import styled, { css } from 'styled-components'
 import { font, palette } from 'styled-theme'
 import { Link as RouterLink } from 'react-router'
+import omit from 'lodash/omit'
 
 const styles = css`
   font-family: ${font('primary')};
@@ -14,8 +15,8 @@ const styles = css`
   }
 `
 
-const StyledLink = styled(({ theme, reverse, palette, ...props }) =>
-  <RouterLink {...props} />
+const StyledLink = styled(props =>
+  <RouterLink {...omit(props, 'theme', 'reverse', 'palette')} />
 )`${styles}`
 const Anchor = styled.a`${styles}`
 

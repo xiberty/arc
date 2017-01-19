@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import styled, { css } from 'styled-components'
 import { Link } from 'react-router'
 import { font, palette, ifProp } from 'styled-theme'
+import omit from 'lodash/omit'
 
 const fontSize = ({ height }) => `${height / 40}rem`
 
@@ -44,8 +45,8 @@ const styles = css`
   }
 `
 
-const StyledLink = styled(({ disabled, transparent, reverse, color, height, theme, ...props }) =>
-  <Link {...props} />
+const StyledLink = styled(props =>
+  <Link {...omit(props, 'disabled', 'transparent', 'reverse', 'palette', 'height', 'theme')} />
 )`${styles}`
 const Anchor = styled.a`${styles}`
 const StyledButton = styled.button`${styles}`
